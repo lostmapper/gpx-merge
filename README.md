@@ -1,6 +1,6 @@
 # Strava Merge
 
-A small Python script to merge the tracks from multiple Strava GPX files into one GPX file.
+A small Python script to merge the tracks from multiple Strava GPX files into a single GPX and single Geopackage file.
 
 ## Usage
 
@@ -10,4 +10,4 @@ A small Python script to merge the tracks from multiple Strava GPX files into on
    3. Don't delete your account!
 2. Unzip the files into the `input` directory
 3. Run the script
-4. Find your combined tracks in `output/combined.gpx`
+4. Find your combined tracks in `output/combined.gpkz` and `output/combined.gpx`

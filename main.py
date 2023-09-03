@@ -1,26 +1,21 @@
-"""Merge tracks from multiple Strava GPX files into one GPX file"""
+"""Merge tracks from multiple Strava GPX files into one Geopackage file and one GPX file"""
 import glob
-import gpxpy.gpx
+
+import geopandas
+import pandas
 
 if __name__ == "__main__":
     gpx_files = glob.glob("./input/*.gpx")
 
     print(f"{len(gpx_files)} GPX files found")
 
-    combined_gpx = gpxpy.gpx.GPX()
-    combined_gpx.nsmap[
-        "gpxtpx"
-    ] = "http://www.garmin.com/xmlschemas/TrackPointExtension/v1"
+    combined = geopandas.GeoDataFrame(
+        columns=["name", "type", "geometry"], geometry="geometry"
+    )
 
     for filename in gpx_files:
-        with open(filename, "r", encoding="utf-8") as gpx_file:
-            gpx = gpxpy.parse(gpx_file)
+        tracks = geopandas.read_file(filename, layer="tracks")
+        combined = pandas.concat([combined, tracks[["name", "type", "geometry"]]])
 
-            for track in gpx.tracks:
-                print(f"- {track.name}")
-                combined_gpx.tracks.append(track)
-
-    with open("./output/combined.gpx", "w", encoding="utf-8") as combined_file:
-        combined_file.write(combined_gpx.to_xml("1.1"))
-
-    print(f"{len(combined_gpx.tracks)} tracks successfully added.")
+    combined.to_file("./output/combined.gpkg", driver="GPKG")
+    combined.to_file("./output/combined.gpx", driver="GPX")

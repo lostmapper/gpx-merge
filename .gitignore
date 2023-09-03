@@ -1,4 +1,4 @@
-input/*.gpx
+input/*
 !input/.gitkeep
-output/*.gpx
+output/*
 !output/.gitkeep
