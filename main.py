@@ -17,5 +17,7 @@ if __name__ == "__main__":
         tracks = geopandas.read_file(filename, layer="tracks")
         combined = pandas.concat([combined, tracks[["name", "type", "geometry"]]])
 
+    print(f"{len(combined.index)} tracks combined")
+
     combined.to_file("./output/combined.gpkg", driver="GPKG")
     combined.to_file("./output/combined.gpx", driver="GPX")
