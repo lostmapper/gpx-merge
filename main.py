@@ -1,4 +1,4 @@
-"""Merge tracks from multiple Strava GPX files into one Geopackage file and one GPX file"""
+"""Merge tracks from multiple Strava GPX files into one GeoPackage file and one GPX file"""
 import glob
 
 import geopandas
