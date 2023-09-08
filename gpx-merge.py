@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Merge tracks from multiple GPX files into one GeoPackage file and one GPX file"""
 import glob
 
