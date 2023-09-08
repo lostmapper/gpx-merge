@@ -9,15 +9,22 @@ if __name__ == "__main__":
 
     print(f"{len(gpx_files)} GPX files found")
 
-    combined = geopandas.GeoDataFrame(
+    merged_tracks = geopandas.GeoDataFrame(
         columns=["name", "type", "geometry"], geometry="geometry"
     )
 
+    print("Merging", end="")
     for filename in gpx_files:
         tracks = geopandas.read_file(filename, layer="tracks")
-        combined = pandas.concat([combined, tracks[["name", "type", "geometry"]]])
+        merged_tracks = pandas.concat(
+            [merged_tracks, tracks[["name", "type", "geometry"]]]
+        )
+        print(".", end="", flush=True)
+    print("")
 
-    print(f"{len(combined.index)} tracks combined")
+    merged_tracks.to_file("./output/merged.gpkg", driver="GPKG")
+    merged_tracks.to_file("./output/merged.gpx", driver="GPX")
 
-    combined.to_file("./output/combined.gpkg", driver="GPKG")
-    combined.to_file("./output/combined.gpx", driver="GPX")
+    print(f"{len(merged_tracks.index)} tracks merged into the following files:")
+    print("- output/merged.gpkg")
+    print("- output/merged.gpx")

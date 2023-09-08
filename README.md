@@ -2,28 +2,24 @@
 
 A small Python script to merge the tracks from multiple GPX files into a single GPX and single GeoPackage file.
 
-## Prerequisites
-
-- Python 3.8+
-- [Poetry](https://python-poetry.org)
-
 ## Setup
 
 To check out and run the project, do the following:
 
 ```bash
-$ git clone git@github.com:lostmapper/strava-gpx-merge.git
-$ cd strava-gpx-merge
-$ poetry install
-$ poetry shell
-$ poetry run python main.py
+$ git clone git@github.com:lostmapper/gpx-merge.git
+$ cd gpx-merge
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ python -m pip install -r requirements.txt
+$ python main.py
 ```
 
 ## Usage
 
 1. Place your GPX files in the `input` folder.
 2. Run the script.
-3. Find your combined tracks in `output/combined.gpkz` and `output/combined.gpx`.
+3. Find your combined tracks in `output/merged.gpkz` and `output/merged.gpx`.
 
 ### Downloading Bulk Data from Strava
 
