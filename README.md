@@ -19,9 +19,9 @@ $ python main.py
 
 1. Place your GPX files in the `input` folder.
 2. Run the script.
-3. Find your combined tracks in `output/merged.gpkz` and `output/merged.gpx`.
+3. Find your combined tracks in `output/merged.gpkg` and `output/merged.gpx`.
 
-### Downloading Bulk Data from Strava
+## Downloading Bulk Data from Strava
 
 If you're looking to download all your GPX files from Strava at once:
 
